@@ -17,17 +17,17 @@ namespace doodle
             InitializeComponent();
             CreateWidthMenu();
             CreateCanvas();
-            pictureBox.MouseDown += (sender, e) => _penDown = true;
-            pictureBox.MouseMove += (sender1, e1) =>
+            pictureBox.MouseDown += (o, e) => _penDown = true;
+            pictureBox.MouseMove += (o, e) =>
             {
                 var g = Graphics.FromImage(pictureBox.Image);
-                var newPoint = new Point(e1.X, e1.Y);
+                var newPoint = new Point(e.X, e.Y);
                 if (_penDown)
                     g.DrawLine(_currentPen, _lastPoint, newPoint);
                 _lastPoint = newPoint;
                 pictureBox.Image = pictureBox.Image;
             };
-            pictureBox.MouseUp += (sender2, e2) => _penDown = false;
+            pictureBox.MouseUp += (o, e) => _penDown = false;
         }
 
         private void CreateWidthMenu()
